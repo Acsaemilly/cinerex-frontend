@@ -1,6 +1,14 @@
-import dino from '../assets/dino.png'
+import { useNavigate } from 'react-router';
+import dino from '../assets/dino.png';
 
 function LoginPage() {
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate('/filmes');
+    };
+
     return (
         <div className="align-items-center text-bg-dark vw-100 vh-100 d-flex"
         style={{
@@ -12,7 +20,7 @@ function LoginPage() {
             <div className="container w-50 ms-5 p-3 text-bg-light rounded">
                 <h3 className="text-center">Bem vindo ao <span className="text-danger">CineRex</span>!</h3>
                 <p className="text-center text-secondary">Preencha os dados de login para acessar</p>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="m-5">
                         <label className="form-label" htmlFor="usuario">Usuario</label>
                         <input className="form-control" type="text" id="usuario" />
