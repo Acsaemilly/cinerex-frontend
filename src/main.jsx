@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import LoginPage from './pages/LoginPage.jsx'
 import FilmePage from './pages/FilmePage.jsx'
+import SalaPage from './pages/SalaPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -10,12 +11,12 @@ const router = createBrowserRouter([
     element: <LoginPage /> 
   },
   {
-    path: "/home",
-    element: <h1>Essa e a home vioiu</h1>
-  },
-  {
     path: "/filmes",
     element: <FilmePage/>
+  },
+  {
+    path: "/salas",
+    element: <SalaPage/>
   }
 ]);
 
