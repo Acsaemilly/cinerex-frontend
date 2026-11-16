@@ -40,8 +40,8 @@ function Sidebar() {
              <button type="button" 
             className = "btn btn-danger w-50 mt-5"
             style={{ height: 60 }}
-            onClick={() => navigate('/ingressos')}
-            > Ingressos </button>
+            onClick={() => navigate('/')}
+            > Sair </button>
         </div>
     )
 }
