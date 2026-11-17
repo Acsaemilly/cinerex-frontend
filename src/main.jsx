@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage.jsx'
 import FilmePage from './pages/FilmePage.jsx'
 import SalaPage from './pages/SalaPage.jsx'
 import IngressosPage from './pages/IngressoPage.jsx'
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const router = createBrowserRouter([
   {

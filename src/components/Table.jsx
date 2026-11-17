@@ -7,12 +7,13 @@ const TableHeader = () => {
             <th> Tipo </th>
             <th> Valor </th>
             <th> Status </th>  
+            <th> Ações </th>
         </tr>
     </thead>
     );
 };
 
-const TableBody = ({ ingressos}) => {
+const TableBody = ({ ingressos, onDelete}) => {
     if (!ingressos || ingressos.length === 0){
         return(
             <tbody> 
@@ -30,17 +31,22 @@ const TableBody = ({ ingressos}) => {
                 <td> {row.tipo} </td>
                 <td> {row.valor} </td>
                 <td> {row.status} </td>
+                <td> <button className = "btn btn-link text-dark"
+                        onClick = {() => onDelete(index)} title = "cancelar ingresso"> <i className = "bi bi-trash3-fill"> </i></button>
+                        </td>
             </tr>
         )
-    })
+    }
+
+)
     return <tbody className="text-center"> {rows} </tbody>
 }
 
-const Table = ({ ingressos}) => {
+const Table = ({ ingressos, onDelete}) => {
     return(
         <table className="table table-striped table-hover table-sm align-middle">
             <TableHeader />
-            <TableBody ingressos={ingressos} />
+            <TableBody ingressos={ingressos} onDelete = {onDelete}/>
         </table>
     )
 }
