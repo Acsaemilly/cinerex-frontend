@@ -5,7 +5,7 @@ function Sidebar() {
     const navigate = useNavigate();
 
     return(
-        <div className="sidebar align-items-center text-bg-light vh-100 d-flex flex-column"
+        <div className="sidebar align-items-center text-bg-light vh-100 d-flex flex-column position-sticky top-0"
             style={{ width: "20vw" }}>
 
             <img src={logo}
