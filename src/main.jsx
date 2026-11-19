@@ -5,7 +5,8 @@ import LoginPage from './pages/LoginPage.jsx'
 import FilmePage from './pages/FilmePage.jsx'
 import SalaPage from './pages/SalaPage.jsx'
 import IngressosPage from './pages/IngressoPage.jsx'
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import SessoesPage from './pages/SessoesPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/ingressos",
     element: <IngressosPage/>
+  },
+  {
+    path: "/sessoes",
+    element: <SessoesPage />
   }
 ]);
 
