@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage.jsx'
 import FilmePage from './pages/FilmePage.jsx'
 import SalaPage from './pages/SalaPage.jsx'
 import IngressosPage from './pages/IngressoPage.jsx'
+import FuncionarioPage from './pages/FuncionarioPage.jsx'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import SessoesPage from './pages/SessoesPage.jsx'
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/sessoes",
     element: <SessoesPage />
+  },
+  {
+    path: "/funcionarios",
+    element: <FuncionarioPage />
   }
 ]);
 
