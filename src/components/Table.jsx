@@ -2,7 +2,7 @@ const TableHeader = () => {
     return (
         <thead className="table-danger text-center fw-bold">
             <tr>
-                <th>TESTE DE ATUALIZAÇÃO</th>
+                <th>Código</th>
                 <th>Informações da sessão</th>
                 <th>Tipo</th>
                 <th>Valor</th>
@@ -13,7 +13,7 @@ const TableHeader = () => {
     );
 };
 
-const TableBody = ({ ingressos, onCancel }) => {
+const TableBody = ({ ingressos, onCancel, onUse }) => {
     if (!ingressos || ingressos.length === 0) {
         return (
             <tbody>
@@ -53,8 +53,21 @@ const TableBody = ({ ingressos, onCancel }) => {
                         title="Cancelar ingresso"
                         disabled={row.status === "Cancelado"}
                     >
-                        <i className="bi bi-trash3"></i>
+                        <i class="bi bi-ban"></i>
                     </button>
+
+                   <button
+                    className="btn btn-sm"
+                    onClick={() => onUse(row.codigo)}
+                    title="Utilizar ingresso"
+                    disabled={
+                        row.status === "Utilizado" ||
+                        row.status === "Cancelado"
+                    }
+                >
+                    <i className="bi bi-check"></i>
+                </button>
+
                     </td>
                 </tr>
             ))}
@@ -62,13 +75,14 @@ const TableBody = ({ ingressos, onCancel }) => {
     );
 };
 
-const Table = ({ ingressos, onCancel }) => {
+const Table = ({ ingressos, onCancel, onUse }) => {
     return (
         <table className="table table-striped table-hover table-sm align-middle">
             <TableHeader />
             <TableBody
                 ingressos={ingressos}
                 onCancel={onCancel}
+                onUse = {onUse}
             />
         </table>
     );

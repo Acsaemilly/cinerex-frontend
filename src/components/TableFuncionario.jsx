@@ -1,4 +1,3 @@
-
 const TableHeader = () => {
     return (
         <thead className="table-danger text-center fw-bold">
@@ -6,12 +5,13 @@ const TableHeader = () => {
                 <th>ID</th>
                 <th>Email</th>
                 <th>Cargo</th>
+                <th>Ações</th>
             </tr>
         </thead>
     );
 };
 
-const TableBody = ({ usuarios }) => {
+const TableBody = ({ usuarios, onEdit, onDelete }) => {
     if (!usuarios || usuarios.length === 0) {
         return (
             <tbody>
@@ -30,6 +30,26 @@ const TableBody = ({ usuarios }) => {
                 <td>{row.id}</td>
                 <td>{row.email}</td>
                 <td>{row.cargo}</td>
+
+                <td className="text-center">
+                    {/* Editar */}
+                    <button
+                        className="btn btn-sm me-2"
+                        onClick={() => onEdit(row)}
+                        title="Editar funcionário"
+                    >
+                        <i className="bi bi-pencil-square"></i>
+                    </button>
+
+                    {/* Excluir */}
+                    <button
+                        className="btn btn-sm"
+                        onClick={() => onDelete(row.id)}
+                        title="Excluir funcionário"
+                    >
+                        <i className="bi bi-trash3-fill"></i>
+                    </button>
+                </td>
             </tr>
         );
     });
@@ -37,11 +57,15 @@ const TableBody = ({ usuarios }) => {
     return <tbody className="text-center">{rows}</tbody>;
 };
 
-const Table = ({ usuarios }) => {
+const Table = ({ usuarios, onEdit, onDelete }) => {
     return (
         <table className="table table-striped table-hover table-sm align-middle">
             <TableHeader />
-            <TableBody usuarios={usuarios} />
+            <TableBody
+                usuarios={usuarios}
+                onEdit={onEdit}
+                onDelete={onDelete}
+            />
         </table>
     );
 };

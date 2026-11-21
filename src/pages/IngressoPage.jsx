@@ -112,6 +112,16 @@ function IngressoPage() {
         );
     };
 
+    const onUse = (codigo) => {
+        setIngressos((ingressosAtuais) =>
+            ingressosAtuais.map((ingresso) =>
+                ingresso.codigo === codigo
+                    ? { ...ingresso, status: "Utilizado" }
+                    : ingresso
+            )
+        );
+    };
+
     // Limpar filtros
     const limparFiltros = () => {
         setPesquisa("");
@@ -224,6 +234,7 @@ function IngressoPage() {
                     <Table
                         ingressos={ingressosFiltrados}
                         onCancel={onCancel}
+                        onUse={onUse}
                     />
 
                 </div>
