@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import LoginPage from './pages/LoginPage.jsx'
 import FilmePage from './pages/FilmePage.jsx'
 import SalaPage from './pages/SalaPage.jsx'
-import IngressosPage from './pages/IngressoPage.jsx'
+import IngressoPage from './pages/IngressoPage.jsx'
 import FuncionarioPage from './pages/FuncionarioPage.jsx'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import SessoesPage from './pages/SessoesPage.jsx'
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/ingressos",
-    element: <IngressosPage/>
+    element: <IngressoPage/>
   },
   {
     path: "/sessoes",
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   {
     path: "/funcionarios",
     element: <FuncionarioPage />
-  }
+}
 ]);
 
 createRoot(document.getElementById('root')).render(

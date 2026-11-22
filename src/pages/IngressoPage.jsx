@@ -3,8 +3,6 @@ import SideBar from "../components/Sidebar.jsx";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import Table from "../components/Table.jsx";
-import AddButton from "../components/AddButton.jsx";
-import SearchBar from "../components/SearchBar.jsx";
 
 
 const INGRESSOS_INICIAIS = [
