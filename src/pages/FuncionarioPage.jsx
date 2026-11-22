@@ -2,6 +2,7 @@
 import SideBar from "../components/Sidebar.jsx";
 import { useState } from "react";
 import Table from "../components/TableFuncionario.jsx";
+import FuncionarioModal from "../components/FuncionarioModal.jsx";
 
 const FUNCIONARIOS_INICIAIS = [
     { id: 1, email: 'joao@example.com', senha: '123456', cargo: 'ADMINISTRADOR' },
@@ -10,6 +11,8 @@ const FUNCIONARIOS_INICIAIS = [
 
 function FuncionarioPage() {
     const [funcionarios, setFuncionarios] = useState(FUNCIONARIOS_INICIAIS);
+    const [showModal, setShowModal] = useState(false);
+    const [funcionarioToEdit, setFuncionarioToEdit] = useState(null);
 
     // Filtros
     const [id, setId] = useState("");
@@ -42,10 +45,52 @@ function FuncionarioPage() {
         setCargo("");
     };
 
+    // Funções 
+    // Abrir para criar
+    const handleAdd = () => {
+        setFuncionarioToEdit(null);
+        setShowModal(true);
+    };
+
+    // Abrir para editar (chamada pela tabela)
+    const handleEdit = (funcionario) => {
+        setFuncionarioToEdit(funcionario);
+        setShowModal(true);
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
+        setFuncionarioToEdit(null);
+    };
+
+    // Salvar (cria ou atualiza)
+    const handleSave = (dados) => {
+        setFuncionarios((prev) => {
+            const existe = prev.some((f) => f.id === dados.id);
+
+            if (existe) {
+                // Atualiza: se a senha não veio, mantém a atual
+                return prev.map((f) =>
+                    f.id === dados.id ? { ...f, ...dados } : f
+                );
+            }
+
+            // Cria
+            return [...prev, dados];
+        });
+
+        handleClose();
+    };
+
+    const handleDelete = (id) => {
+        if (window.confirm('Deseja realmente excluir este funcionário?')) {
+            setFuncionarios((prev) => prev.filter((f) => f.id !== id));
+        }
+    };
+
     return (
         <div
-            className="d-flex min-vh-100"
-            style={{ backgroundColor: '#181818' }}
+            className="d-flex min-vh-100 bg-dark"
         >
             <SideBar />
 
@@ -53,6 +98,11 @@ function FuncionarioPage() {
 
                 <div className="d-flex w-100 justify-content-between align-items-center">
                     <h1 className="text-danger font-poetsen">Funcionários</h1>
+
+                    <button className="btn btn-danger fw-bold" onClick={handleAdd}>
+                        <i className="bi bi-plus-circle me-2"></i>
+                        Adicionar
+                    </button>
                 </div>
 
                 <div className="container-fluid">
@@ -89,17 +139,15 @@ function FuncionarioPage() {
                         </div>
 
                         <div className="col-md-4">
-                            <label className="form-label text-white">
-                                Cargo
-                            </label>
-
-                            <input
-                                type="text"
-                                className="form-control bg-dark text-white border-secondary"
-                                placeholder="Cargo do funcionário"
-                                value={cargo}
-                                onChange={(e) => setCargo(e.target.value)}
-                            />
+                           <select
+                            className="form-select bg-dark text-white border-secondary"
+                            value={cargo}
+                            onChange={(e) => setCargo(e.target.value)}
+                            >
+                            <option value="">Todos</option>
+                            <option value="ADMINISTRADOR">Administrador</option>
+                            <option value="USUARIO">Usuário</option>
+                            </select>
                         </div>
 
                     </div>
@@ -121,10 +169,20 @@ function FuncionarioPage() {
                     </div>
 
                     {/* Tabela */}
-                    <Table usuarios={funcionariosFiltrados} />
+                    <Table
+                        usuarios={funcionariosFiltrados}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                    />
 
                 </div>
             </main>
+                <FuncionarioModal
+                    show={showModal}
+                    onClose={handleClose}
+                    onSave={handleSave}
+                    funcionarioToEdit={funcionarioToEdit}
+                />
         </div>
     );
 }
