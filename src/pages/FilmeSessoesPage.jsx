@@ -3,24 +3,21 @@ import { useParams, useNavigate, useLocation } from "react-router";
 import Sidebar from "../components/Sidebar";
 
 const SESSOES_INICIAIS = [
-    { sala: "Sala 1", horario: "01/12/2026 - 13:00" },
-    { sala: "Sala 1", horario: "01/12/2026 - 15:00" },
-    { sala: "Sala 1", horario: "01/12/2026 - 17:00" },
-    { sala: "Sala 2", horario: "01/12/2026 - 14:00" },
+    { id: 1, sala: "Sala 1", horario: "01/12/2026 - 13:00" },
+    { id: 2, sala: "Sala 1", horario: "01/12/2026 - 15:00" },
+    { id: 3, sala: "Sala 1", horario: "01/12/2026 - 17:00" },
+    { id: 4, sala: "Sala 2", horario: "01/12/2026 - 14:00" },
 ];
 
 function SessoesCard({ sala, sessoes, onDelete }) {
     const linhas = sessoes.map((sessao) => (
-        <div
-            key={sessao.index}
-            className="d-flex flex-row justify-content-between"
-        >
+        <div className="d-flex flex-row justify-content-between">
             <p>{sessao.horario}</p>
             <i
                 className="bi bi-trash"
                 aria-hidden="true"
                 style={{ cursor: "pointer" }}
-                onClick={() => onDelete(sessao.index)}
+                onClick={() => onDelete(sessao.id)}
             />
         </div>
     ));
@@ -33,14 +30,10 @@ function SessoesCard({ sala, sessoes, onDelete }) {
     );
 }
 function SessoesCards({ sessoes, onDelete }) {
-    const agrupados = Object.groupBy(
-        sessoes.map((sessao, index) => ({ ...sessao, index })),
-        ({ sala }) => sala
-    );
+    const agrupados = Object.groupBy(sessoes, ({ sala }) => sala);
 
     return Object.entries(agrupados).map(([sala, sessoes]) => (
         <SessoesCard
-            key={sala}
             sala={sala}
             sessoes={sessoes}
             onDelete={onDelete}
@@ -54,9 +47,8 @@ export default function FilmeSessoesPage() {
     const { filme } = useLocation().state;
     const [ sessoes, setSessoes ] = useState(SESSOES_INICIAIS);
 
-    function onDelete(idx) {
-        console.log(idx);
-        setSessoes(sessoes.filter((val, index) => index !== idx));
+    function onDelete(id) {
+        setSessoes(sessoes.filter((sessao, index) => sessao.id !== id));
     }
 
     return (
