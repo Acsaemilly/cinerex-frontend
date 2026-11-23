@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import Sidebar from "../components/Sidebar";
 
-import posterDevoradores from "../assets/posters/devoradores.jpg";
+import posterDevoradores from "../assets/posters/devoradores.png";
 import posterObsessao from "../assets/posters/obsessao.jpg";
 import posterFnaf2 from "../assets/posters/fnaf2.jpg";
 import posterHomemAranha from "../assets/posters/homem_aranha.jpg";
@@ -63,15 +63,11 @@ export const FILMES_INICIAIS = [
 function FilmeSessaoCard({ filme }) {
     const navigate = useNavigate();
 
-    function abrirSessoes() {
-        navigate(`/filmes/${filme.id}/sessoes`);
-    }
-
     return (
         <div
             className="card bg-light text-black border-0 rounded-3 p-3 h-100"
             role="button"
-            onClick={abrirSessoes}
+            onClick={() => navigate(`/filmes/${filme.id}/sessoes`, { state: { filme: filme }})}
             style={{ cursor: "pointer" }}
         >
             <img
