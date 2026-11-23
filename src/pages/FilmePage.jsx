@@ -3,7 +3,7 @@ import Sidebar from '../components/Sidebar.jsx';
 import FilmeCard from '../components/FilmeCard.jsx';
 import FilmeModal from '../components/FilmeModal.jsx';
 
-import posterDevoradores from '../assets/posters/devoradores.jpg';
+import posterDevoradores from '../assets/posters/devoradores.png';
 import posterObsessao from '../assets/posters/obsessao.jpg';
 import posterFnaf2 from '../assets/posters/fnaf2.jpg';
 import posterHomemAranha from '../assets/posters/homem_aranha.jpg';
