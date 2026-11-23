@@ -90,7 +90,8 @@ function FuncionarioPage() {
 
     return (
         <div
-            className="d-flex min-vh-100 bg-dark"
+            className="d-flex min-vh-100"
+            style={{ backgroundColor: '#181818' }}
         >
             <SideBar />
 
