@@ -8,6 +8,7 @@ import IngressoPage from './pages/IngressoPage.jsx'
 import FuncionarioPage from './pages/FuncionarioPage.jsx'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import SessoesPage from './pages/SessoesPage.jsx'
+import FilmeSessoesPage from './pages/FilmeSessoesPage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
   {
     path: "/funcionarios",
     element: <FuncionarioPage />
-}
+  },
+  {
+    path: "/filmes/:filmeId/sessoes",
+    element: <FilmeSessoesPage />
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
