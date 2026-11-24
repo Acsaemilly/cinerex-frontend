@@ -81,24 +81,14 @@ function SalaPage() {
               Salas do cinema
             </h1>
 
-            <div className="d-flex align-items-center gap-3">
-              <button
-                type="button"
-                onClick={handleOpenAddModal}
-                className="btn btn-danger text-uppercase fw-bold px-4 py-2 shadow-sm rounded-2"
-                style={{ fontSize: '0.95rem' }}
-              >
-                ADICIONAR
-              </button>
-
-              <div
-                className="rounded-circle bg-white text-dark d-flex align-items-center justify-content-center shadow-sm"
-                style={{ width: '46px', height: '46px', cursor: 'pointer' }}
-                title="Perfil do usuário"
-              >
-                <i className="bi bi-person-fill fs-3"></i>
-              </div>
-            </div>
+            <button
+              type="button"
+              onClick={handleOpenAddModal}
+              className="btn btn-danger text-uppercase fw-bold px-4 py-2 shadow-sm rounded-2"
+              style={{ fontSize: '0.95rem' }}
+            >
+              ADICIONAR
+            </button>
           </div>
 
           {/* Lista de Salas */}
