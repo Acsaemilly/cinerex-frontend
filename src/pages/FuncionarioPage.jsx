@@ -139,7 +139,7 @@ function FuncionarioPage() {
                             />
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-6">
                            <select
                             className="form-select bg-dark text-white border-secondary"
                             value={cargo}
